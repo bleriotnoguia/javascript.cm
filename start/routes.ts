@@ -10,6 +10,7 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 const LoginController = () => import('#controllers/auth/login_controller')
+const GithubController = () => import('#controllers/auth/github_controller')
 
 router
   .group(() => {
@@ -22,3 +23,7 @@ router
 router.get('/', async ({ inertia }) => {
   return inertia.render('home')
 })
+
+// GitHub auth routes
+router.get('auth/github', [GithubController, 'redirect']).as('auth.github')
+router.get('auth/github/callback', [GithubController, 'callback']).as('auth.github.callback')
