@@ -14,6 +14,7 @@ const LoginController = () => import('#controllers/auth/login_controller')
 const GithubController = () => import('#controllers/auth/github_controller')
 const RegisterController = () => import('#controllers/auth/register_controller')
 const ArticlesController = () => import('#controllers/articles_controller')
+const ProfileController = () => import('#controllers/profile_controller')
 
 router
   .group(() => {
@@ -54,3 +55,23 @@ router
   .as('articles.store')
   .middleware(middleware.auth())
 router.get('articles/:slug', [ArticlesController, 'show']).as('articles.show')
+
+// Profile routes
+router.get('/:username', [ProfileController, 'show']).where('username', '@.*').as('profile.show')
+
+// Dashboard routes
+router
+  .group(() => {
+    router
+      .get('dashboard', async ({ inertia }) => {
+        return inertia.render('dashboard/index', {
+          stats: {
+            articles: 0,
+            discussions: 0,
+            questions: 0,
+          },
+        })
+      })
+      .as('dashboard')
+  })
+  .middleware(middleware.auth())
