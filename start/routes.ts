@@ -24,7 +24,14 @@ router
   .middleware(middleware.guest())
 
 router.get('/', async ({ inertia }) => {
-  return inertia.render('home')
+  return inertia.render('home', {
+    stats: {
+      members: 600,
+      developers: 50,
+      participation: 25,
+      githubStars: 10,
+    },
+  })
 })
 
 // GitHub auth routes
