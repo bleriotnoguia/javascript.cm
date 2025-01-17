@@ -13,7 +13,7 @@ export default class GuestMiddleware {
   /**
    * The URL to redirect to when user is logged-in
    */
-  redirectTo = '/'
+  redirectTo = '/dashboard'
 
   async handle(
     ctx: HttpContext,
@@ -25,7 +25,6 @@ export default class GuestMiddleware {
         return ctx.response.redirect(this.redirectTo, true)
       }
     }
-
     return next()
   }
 }

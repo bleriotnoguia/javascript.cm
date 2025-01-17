@@ -54,6 +54,7 @@
     "vite": "^6.0.3"
   },
   "dependencies": {
+    "@adonisjs/ally": "^5.0.2",
     "@adonisjs/auth": "^9.2.4",
     "@adonisjs/core": "^6.17.0",
     "@adonisjs/cors": "^2.2.1",
@@ -63,6 +64,7 @@
     "@adonisjs/shield": "^8.1.1",
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^4.0.0",
+    "@headlessui/react": "^2.2.0",
     "@inertiajs/react": "^2.0.0",
     "@vinejs/vine": "^3.0.0",
     "edge.js": "^6.2.0",
@@ -79,13 +81,16 @@
     ]
   },
   "overrides": {
+    "@inertiajs/core": "2.0.0",
     "strtok3": "8.0.1"
   },
   "resolutions": {
+    "@inertiajs/core": "2.0.0",
     "strtok3": "8.0.1"
   },
   "pnpm": {
     "overrides": {
+      "@inertiajs/core": "2.0.0",
       "strtok3": "8.0.1"
     }
   },
