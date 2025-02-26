@@ -85,18 +85,30 @@ export default function Home({ stats, articles }: HomeProps) {
             <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
               <img
                 className="h-12"
-                src="/images/partners/laravel-shopper.svg"
-                alt="Laravel Shopper"
+                src="/resources/images/partners/undraw_in-the-zone_07y7.svg"
+                alt="Laravel Cameroun"
               />
             </div>
             <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-              <img className="h-12" src="/images/partners/gdg-douala.svg" alt="GDG Douala" />
+              <img
+                className="h-12"
+                src="/resources/images/partners/undraw_quiet-street_v45k.svg"
+                alt="GDG Douala"
+              />
             </div>
             <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-              <img className="h-12" src="/images/partners/notchpay.svg" alt="NotchPay" />
+              <img
+                className="h-12"
+                src="/resources/images/partners/undraw_in-the-zone_07y7.svg"
+                alt="Laravel Cameroun"
+              />
             </div>
             <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-              <img className="h-12" src="/images/partners/sharuco.svg" alt="Sharuco" />
+              <img
+                className="h-12"
+                src="/resources/images/partners/undraw_quiet-street_v45k.svg"
+                alt="GDG Douala"
+              />
             </div>
           </div>
         </div>
