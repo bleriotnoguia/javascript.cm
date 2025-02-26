@@ -9,12 +9,12 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
-import Article from '#models/article'
 const LoginController = () => import('#controllers/auth/login_controller')
 const GithubController = () => import('#controllers/auth/github_controller')
 const RegisterController = () => import('#controllers/auth/register_controller')
 const ArticlesController = () => import('#controllers/articles_controller')
 const ProfileController = () => import('#controllers/profile_controller')
+const HomeController = () => import('#controllers/home_controller')
 
 router
   .group(() => {
@@ -26,19 +26,7 @@ router
   })
   .middleware(middleware.guest())
 
-router.get('/', async ({ inertia }) => {
-  const articles = await Article.query().where('is_published', true).preload('author')
-
-  return inertia.render('home', {
-    stats: {
-      members: 600,
-      developers: 50,
-      participation: 25,
-      githubStars: 10,
-    },
-    articles: articles,
-  })
-})
+router.get('/', [HomeController, 'index'])
 
 // GitHub auth routes
 router.get('auth/github', [GithubController, 'redirect']).as('auth.github')
