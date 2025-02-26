@@ -11,6 +11,7 @@ const inertiaConfig = defineConfig({
    * Data that should be shared with all rendered pages
    */
   sharedData: {
+    appName: 'JavaScript Cameroun',
     auth: (ctx) => {
       return {
         user: ctx.auth.user,
