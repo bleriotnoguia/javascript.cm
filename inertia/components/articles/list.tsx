@@ -28,7 +28,7 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
   return (
     <div className="mt-8 space-y-8">
       {articles.data.map((article) => (
-        <article key={article.id} className="relative bg-white p-8 rounded-lg shadow-sm">
+        <article key={article.id} className="bg-white p-8 rounded-lg shadow-sm">
           <div className="flex items-center gap-x-4 text-xs">
             <time dateTime={article.publishedAt} className="text-gray-500">
               {new Date(article.publishedAt).toLocaleDateString('fr-FR', {
@@ -38,7 +38,7 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
               })}
             </time>
           </div>
-          <div className="group relative">
+          <div className="group">
             <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
               <Link href={`/articles/${article.slug}`}>
                 {/* <span className="absolute inset-0" /> */}
