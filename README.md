@@ -55,8 +55,8 @@ node ace serve --watch
 
 ## Features
 
-- [ ] User Authentication
-- [ ] GitHub Authentication
+- [x] User Authentication
+- [x] GitHub Authentication
 - [ ] Twitter Integration
 - [ ] Article Management
 - [ ] Forum

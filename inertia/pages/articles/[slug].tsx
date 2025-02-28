@@ -1,7 +1,8 @@
 import { Head } from '@inertiajs/react'
 import Navbar from '../../components/navbar'
 import Footer from '../../components/footer'
-
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 interface Article {
   title: string
   content: string
@@ -35,7 +36,7 @@ export default function ArticleShow({ article }: ArticleShowProps) {
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             <div className="relative z-10">
               <div className="prose prose-indigo text-gray-500 mx-auto lg:max-w-none">
-                <div dangerouslySetInnerHTML={{ __html: article.content }} />
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{article.content}</ReactMarkdown>
               </div>
             </div>
 
