@@ -16,15 +16,18 @@ const ArticlesController = () => import('#controllers/articles_controller')
 const ProfileController = () => import('#controllers/profile_controller')
 const HomeController = () => import('#controllers/home_controller')
 
+// Guest routes (login/register)
 router
   .group(() => {
     router.get('login', [LoginController, 'show']).as('login')
     router.post('login', [LoginController, 'login']).as('login.store')
-    router.post('logout', [LoginController, 'logout']).as('logout')
     router.get('register', [RegisterController, 'show']).as('register')
     router.post('register', [RegisterController, 'store']).as('register.store')
   })
   .middleware(middleware.guest())
+
+// Logout route (requires authentication)
+router.post('logout', [LoginController, 'logout']).as('logout').middleware(middleware.auth())
 
 router.get('/', [HomeController, 'index'])
 
