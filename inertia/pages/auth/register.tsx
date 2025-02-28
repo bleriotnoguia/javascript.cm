@@ -19,14 +19,131 @@ export default function Register() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="grid lg:grid-cols-2 h-screen">
-          <div className="flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-            <div className="mx-auto w-full max-w-sm lg:w-96">
+      <div className="bg-gray-50 py-12">
+        <div className="grid lg:grid-cols-3 max-w-7xl mx-auto items-start">
+          <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 col-span-2">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold mb-4">
+                Ouvrez votre esprit pour découvrir de nouveaux horizons.
+              </h2>
+
+              <div className="grid grid-cols-2 gap-6 mt-8">
+                <div className="flex flex-col space-y-2">
+                  <div className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-indigo-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                      />
+                    </svg>
+                    <h3 className="ml-2 font-medium">Podcast</h3>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Suivez des podcasts sur différentes thématiques avec des freelancers,
+                    développeurs, entrepreneurs etc.
+                  </p>
+                </div>
+
+                <div className="flex flex-col space-y-2">
+                  <div className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-indigo-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+                      />
+                    </svg>
+                    <h3 className="ml-2 font-medium">Discussions</h3>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Participez à des discussions et débats ouverts avec plusieurs autres
+                    participants.
+                  </p>
+                </div>
+
+                <div className="flex flex-col space-y-2">
+                  <div className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-indigo-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                      />
+                    </svg>
+                    <h3 className="ml-2 font-medium">Code Snippets</h3>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Partagez des codes sources de différents langages pour venir en aide à d'autres
+                    développeurs.
+                  </p>
+                </div>
+
+                <div className="flex flex-col space-y-2">
+                  <div className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-indigo-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                      />
+                    </svg>
+                    <h3 className="ml-2 font-medium">Premium</h3>
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Devenez premium, supportez la communauté et accédez à des contenus et codes
+                    sources privés.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-12">
+                <blockquote className="italic text-gray-700">
+                  "Un développeur solitaire est comme un nœud isolé – limité en termes de portée,
+                  d'influence et de croissance. Tout comme les logiciels se développent grâce à des
+                  composants interconnectés, les développeurs s'épanouissent dans l'écosystème
+                  collaboratif d'une communauté."
+                </blockquote>
+                <p className="mt-2 text-sm text-gray-900">- The Pragmatic Programmer</p>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col justify-center lg:flex-none px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto w-full">
               <div className="text-center">
-                <h2 className="mt-6 text-2xl font-bold text-gray-900">
-                  Ouvrez votre esprit pour découvrir de nouveaux horizons.
-                </h2>
+                <h2 className="text-2xl font-bold text-gray-900">Rejoindre JavaScript Cameroun</h2>
+                <p className="mt-2 text-sm text-gray-500">
+                  Rejoignez près de 1000 développeurs et designers. Parce qu'il n'y a pas que le
+                  code dans la vie.
+                </p>
               </div>
 
               <div className="mt-8">
@@ -34,7 +151,7 @@ export default function Register() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                        Username
+                        Nom d'utilisateur
                       </label>
                       <input
                         type="text"
@@ -50,7 +167,7 @@ export default function Register() {
 
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                        Full Name
+                        Nom complet
                       </label>
                       <input
                         type="text"
@@ -64,7 +181,7 @@ export default function Register() {
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        Email
+                        Adresse email
                       </label>
                       <input
                         type="email"
@@ -78,7 +195,7 @@ export default function Register() {
 
                     <div>
                       <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                        Password
+                        Mot de passe (min. 8 caractères)
                       </label>
                       <input
                         type="password"
@@ -98,7 +215,7 @@ export default function Register() {
                         disabled={processing}
                         className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       >
-                        Create Account
+                        Créer mon compte
                       </button>
                     </div>
                   </form>
@@ -109,7 +226,7 @@ export default function Register() {
                         <div className="w-full border-t border-gray-300" />
                       </div>
                       <div className="relative flex justify-center text-sm">
-                        <span className="bg-gray-50 px-2 text-gray-500">Or continue with</span>
+                        <span className="bg-gray-50 px-2 text-gray-500">Ou continuer avec</span>
                       </div>
                     </div>
 
@@ -132,13 +249,6 @@ export default function Register() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="relative hidden lg:block">
-            <img
-              className="absolute inset-0 h-full w-full object-cover"
-              src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-              alt=""
-            />
           </div>
         </div>
       </div>
