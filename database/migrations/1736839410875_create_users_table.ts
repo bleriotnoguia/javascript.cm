@@ -16,7 +16,6 @@ export default class extends BaseSchema {
       table.boolean('is_admin').defaultTo(false)
       table.boolean('is_sponsor').defaultTo(false)
       table.timestamp('email_verified_at').nullable()
-      table.string('remember_me_token').nullable()
       table.timestamps(true, true)
     })
   }
