@@ -1,6 +1,6 @@
-# JavaScript.cm (built with AdonisJS, inspired by laravel.cm)
+# JavaScript.cm
 
-This repository contains the source code for the javascript.cm website ( javascript community in Cameroon ), inspired by laravel.cm. Laravel Cameroon is the largest community of PHP & Laravel developers residing in Cameroon.
+This repository contains the source code for the [javascript.cm](https://javascript.cm) website ( javascript community in Cameroon ), inspired by [laravel.cm](https://laravel.cm). Laravel Cameroon is the largest community of PHP & Laravel developers residing in Cameroon.
 
 ## Server Requirements
 
@@ -55,11 +55,12 @@ node ace serve --watch
 
 ## Features
 
-- [ ] User Authentication
-- [ ] GitHub Authentication
+- [x] User Authentication
+- [x] GitHub Authentication
 - [ ] Twitter Integration
 - [ ] Article Management
-- [ ] Community Features
+- [ ] Forum
+- [ ] Discussions
 - [ ] Admin Dashboard
 - [ ] Telegram Notifications
 
@@ -73,13 +74,22 @@ node ace serve --watch
 | `node ace migration:run`      | Run database migrations  |
 | `node ace migration:rollback` | Rollback migrations      |
 
+## Stack / Resources
+
+- [AdonisJS](https://adonisjs.com/)
+- [React.js](https://react.dev/)
+- [Inertia.js](https://inertiajs.com/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [MySQL](https://www.mysql.com/)
+- [Lucid ORM](https://lucid.adonisjs.com/)
+
 ## Contributing
 
 Please read the contribution guide before creating an issue or sending a pull request.
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability in the application, please send an email to support@laravel.cm.
+If you discover a security vulnerability in the application, please send an email to [support@javascript.cm](mailto:support@javascript.cm).
 
 ## License
 

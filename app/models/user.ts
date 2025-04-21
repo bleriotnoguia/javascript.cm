@@ -1,10 +1,11 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeSave, column, hasMany } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
 import { compose } from '@adonisjs/core/helpers'
 import hash from '@adonisjs/core/services/hash'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
 import Article from '#models/article'
+import { DbRememberMeTokensProvider } from '@adonisjs/auth/session'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -57,12 +58,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @hasMany(() => Article)
   declare articles: HasMany<typeof Article>
 
-  @beforeSave()
-  static async hashPassword(user: User) {
-    if (user.$dirty.password) {
-      user.password = await hash.make(user.password)
-    }
-  }
+  static rememberMeTokens = DbRememberMeTokensProvider.forModel(User)
 
   /**
    * Serialize the model for Inertia
