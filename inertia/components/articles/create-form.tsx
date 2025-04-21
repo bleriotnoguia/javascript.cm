@@ -45,10 +45,10 @@ export default function CreateArticleForm({ isOpen, onClose }: CreateArticleForm
             </div>
             <div className="ml-3">
               <p className="text-sm text-yellow-700">
-                Soumettez votre article au site Laravel.cm. Nous recherchons des articles de haute
-                qualité autour de JavaScript, Node.js, React, Next.js, Nest.js, AdonisJS, Angular,
-                Vue, CSS et autres sujets connexes. Les articles ne peuvent pas être de nature
-                promotionnelle et doivent être éducatifs et informatifs.
+                Soumettez votre article au site JavaScript.cm. Nous recherchons des articles de
+                haute qualité autour de JavaScript, Node.js, React, Next.js, Nest.js, AdonisJS,
+                Angular, Vue, CSS et autres sujets connexes. Les articles ne peuvent pas être de
+                nature promotionnelle et doivent être éducatifs et informatifs.
               </p>
             </div>
           </div>
