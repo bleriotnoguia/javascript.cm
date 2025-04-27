@@ -8,7 +8,7 @@ on:
 env:
   APP_NAME: ${{ github.event.repository.name }}
   APP_PATH: /home/apps/${{ github.event.repository.name }}
-  NODE_ENV: dev
+  ENV: dev
 
 jobs:
   deploy:
@@ -31,6 +31,40 @@ jobs:
               rm -rf app
             fi
               mkdir -p app
+      
+      - name: Ecrire le fichier .env
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            cd ${{ env.APP_PATH }}/app
+            echo "NODE_ENV=development" > .env
+            echo "APP_NAME=${{ env.APP_NAME }}" >> .env
+            echo "APP_PATH=${{ env.APP_PATH }}" >> .env
+            echo "TZ=UTC" >> .env
+            echo "PORT=3306" >> .env
+            echo "HOST=0.0.0.0" >> .env
+            echo "LOG_LEVEL=INFO" >> .env 
+            echo "APP_KEY=appkey" >> .env
+            echo "SESSION_DRIVER=cookie" >> .env
+            echo "DB_CONNECTION=mysql" >> .env
+            echo "DB_HOST=mysql" >> .env
+            echo "DB_PORT=3306" >> .env
+            echo "DB_USER=root" >> .env
+            echo "DB_PASSWORD=root" >> .env
+            echo "DB_DATABASE=jscm" >> .env
+            echo "MYSQL_HOST=mysql" >> .env
+            echo "MYSQL_PORT=3306" >> .env
+            echo "MYSQL_USER=root" >> .env
+            echo "MYSQL_PASSWORD=root" >> .env
+            echo "MYSQL_DB_NAME=jscm" >> .env
+            echo "MYSQL_DATABASE=jscm" >> .env
+            echo "GITHUB_CLIENT_ID=github_client_id" >> .env
+            echo "GITHUB_CLIENT_SECRET=github_client_secret" >> .env
+            echo "GITHUB_CALLBACK_URL=http://0.0.0.0:3333/auth/github/callback" >> .env
 
       - name: Copier les fichiers de l'application
         uses: appleboy/scp-action@v0.1.7
@@ -52,7 +86,7 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             cd "${{ env.APP_PATH }}/app"
-            sed -i "1s/^/name: ${{ env.APP_NAME }}\n/" compose.${{ env.NODE_ENV }}.yaml
+            sed -i "1s/^/name: ${{ env.APP_NAME }}\n/" compose.${{ env.ENV }}.yaml
 
       - name: Construire et démarrer les conteneurs Docker
         uses: appleboy/ssh-action@v1.0.3
@@ -63,7 +97,7 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             cd "${{ env.APP_PATH }}/app"
-            docker compose -f compose.${{ env.NODE_ENV }}.yaml down || true
-            docker compose -f compose.${{ env.NODE_ENV }}.yaml build --no-cache
-            docker compose -f compose.${{ env.NODE_ENV }}.yaml up -d
+            docker compose -f compose.${{ env.ENV }}.yaml down || true
+            docker compose -f compose.${{ env.ENV }}.yaml build --no-cache
+            docker compose -f compose.${{ env.ENV }}.yaml up -d
             docker system prune -f
