@@ -1,0 +1,69 @@
+name: Déploiement sur VPS (dev)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  APP_NAME: ${{ github.event.repository.name }}
+  APP_PATH: /home/apps/${{ github.event.repository.name }}
+  NODE_ENV: dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vérifier le code
+        uses: actions/checkout@v4
+
+      - name: Créer le dossier de l'application sur le VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            mkdir -p ${{ env.APP_PATH }}
+            cd ${{ env.APP_PATH }}
+            if [ -d "app" ]; then
+              rm -rf app
+            fi
+              mkdir -p app
+
+      - name: Copier les fichiers de l'application
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          source: "."
+          target: "${{ env.APP_PATH }}/app"
+          strip_components: 0
+          
+      - name: Mettre à jour le docker-compose avec le nom de l'application
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            cd "${{ env.APP_PATH }}/app"
+            sed -i "1s/^/name: ${{ env.APP_NAME }}\n/" compose.${{ env.NODE_ENV }}.yaml
+
+      - name: Construire et démarrer les conteneurs Docker
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            cd "${{ env.APP_PATH }}/app"
+            docker compose -f compose.${{ env.NODE_ENV }}.yaml down || true
+            docker compose -f compose.${{ env.NODE_ENV }}.yaml build --no-cache
+            docker compose -f compose.${{ env.NODE_ENV }}.yaml up -d
+            docker system prune -f
