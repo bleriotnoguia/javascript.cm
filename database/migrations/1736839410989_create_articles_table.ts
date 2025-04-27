@@ -11,6 +11,7 @@ export default class extends BaseSchema {
       table.text('excerpt').notNullable()
       table.text('content').notNullable()
       table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
+      table.integer('author_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
       table.boolean('is_published').defaultTo(false)
       table.timestamp('published_at').nullable()
       table.timestamps(true, true)

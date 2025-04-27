@@ -9,6 +9,7 @@ env:
   APP_NAME: ${{ github.event.repository.name }}
   APP_PATH: /home/apps/${{ github.event.repository.name }}
   ENV: dev
+  DATABASE_NAME: javascript_cm
 
 jobs:
   deploy:
@@ -55,13 +56,13 @@ jobs:
             echo "DB_PORT=3306" >> .env
             echo "DB_USER=root" >> .env
             echo "DB_PASSWORD=root" >> .env
-            echo "DB_DATABASE=jscm" >> .env
+            echo "DB_DATABASE=${{ env.DATABASE_NAME }}" >> .env
             echo "MYSQL_HOST=mysql" >> .env
             echo "MYSQL_PORT=3306" >> .env
             echo "MYSQL_USER=root" >> .env
             echo "MYSQL_PASSWORD=root" >> .env
-            echo "MYSQL_DB_NAME=jscm" >> .env
-            echo "MYSQL_DATABASE=jscm" >> .env
+            echo "MYSQL_DB_NAME=${{ env.DATABASE_NAME }}" >> .env
+            echo "MYSQL_DATABASE=${{ env.DATABASE_NAME }}" >> .env
             echo "GITHUB_CLIENT_ID=github_client_id" >> .env
             echo "GITHUB_CLIENT_SECRET=github_client_secret" >> .env
             echo "GITHUB_CALLBACK_URL=http://0.0.0.0:3333/auth/github/callback" >> .env
