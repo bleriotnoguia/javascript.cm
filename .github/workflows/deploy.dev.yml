@@ -2,7 +2,9 @@ name: Déploiement sur VPS (dev)
 
 on:
   push:
-    
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
   workflow_dispatch:
 
 env:
