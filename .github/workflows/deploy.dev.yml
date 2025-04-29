@@ -6,9 +6,8 @@ on:
   workflow_dispatch:
 
 env:
-  APP_NAME: ${{ github.event.repository.name }}
-  APP_PATH: /home/apps/${{ github.event.repository.name }}
-  ENV: dev
+  APP_NAME: ${{ github.event.repository.name }}.dev
+  APP_PATH: /home/apps/${{ github.event.repository.name }}.dev
   DATABASE_NAME: javascript_cm
 
 jobs:
@@ -87,7 +86,7 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             cd "${{ env.APP_PATH }}/app"
-            sed -i "1s/^/name: ${{ env.APP_NAME }}\n/" compose.${{ env.ENV }}.yaml
+            sed -i "1s/^/name: ${{ env.APP_NAME }}\n/" compose.yaml
 
       - name: Construire et démarrer les conteneurs Docker
         uses: appleboy/ssh-action@v1.0.3
@@ -98,7 +97,8 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             cd "${{ env.APP_PATH }}/app"
-            docker compose -f compose.${{ env.ENV }}.yaml down || true
-            docker compose -f compose.${{ env.ENV }}.yaml build --no-cache
-            docker compose -f compose.${{ env.ENV }}.yaml up -d
+            docker compose -f compose.yaml down || true
+            docker compose -f compose.yaml build --no-cache
+            docker compose -f compose.yaml up -d
+            
             docker system prune -f
