@@ -16,7 +16,7 @@ services:
     environment:
       - NODE_ENV=production
       - DB_HOST=mysql
-      - DB_PORT=${DB_PORT}
+      - DB_PORT=3306
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
@@ -67,7 +67,7 @@ services:
     environment:
       - NODE_ENV=development
       - DB_HOST=mysql
-      - DB_PORT=${DB_PORT}
+      - DB_PORT=3306
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
