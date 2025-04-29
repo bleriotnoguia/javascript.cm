@@ -46,14 +46,14 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             cd ${{ env.APP_PATH }}/app
-            echo "NODE_ENV=development" > .env
+            echo "NODE_ENV=production" > .env
             echo "APP_NAME=${{ env.APP_NAME }}" >> .env
             echo "APP_PATH=${{ env.APP_PATH }}" >> .env
             echo "TZ=UTC" >> .env
             echo "PORT=3333" >> .env
             echo "HOST=0.0.0.0" >> .env
             echo "LOG_LEVEL=INFO" >> .env 
-            echo "APP_KEY=appkey" >> .env
+            echo "APP_KEY=onsklvmesdlvmnrsdmvlrks" >> .env
             echo "SESSION_DRIVER=cookie" >> .env
             echo "DB_CONNECTION=mysql" >> .env
             echo "DB_HOST=mysql" >> .env
