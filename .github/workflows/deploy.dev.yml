@@ -1,5 +1,7 @@
 name: Déploiement sur VPS (dev)
 
+
+
 on:
   push:
     branches: [main, develop]
@@ -15,6 +17,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - name: Vérifier le code
         uses: actions/checkout@v4
