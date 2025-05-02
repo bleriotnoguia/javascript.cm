@@ -91,6 +91,14 @@ export default defineConfig({
       reloadServer: false,
     },
     {
+      pattern: 'resources/images/**/*',
+      reloadServer: false,
+    },
+    {
+      pattern: 'resources/**/*.{png,jpg,jpeg,gif,svg,ico}',
+      reloadServer: false,
+    },
+    {
       pattern: 'public/**',
       reloadServer: false,
     },
