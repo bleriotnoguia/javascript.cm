@@ -54,15 +54,7 @@ router.get('/:username', [ProfileController, 'show']).where('username', '@.*').a
 router
   .group(() => {
     router
-      .get('dashboard', async ({ inertia }) => {
-        return inertia.render('dashboard/index', {
-          stats: {
-            articles: 0,
-            discussions: 0,
-            questions: 0,
-          },
-        })
-      })
+      .get('dashboard', [ArticlesController, 'dashboard'])
       .as('dashboard')
   })
   .middleware(middleware.auth())

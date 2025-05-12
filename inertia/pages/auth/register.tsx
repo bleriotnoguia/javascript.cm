@@ -231,7 +231,7 @@ export default function Register() {
                     </div>
 
                     <div className="mt-6">
-                      <Link
+                      <a
                         href="/auth/github"
                         className="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]"
                       >
@@ -243,7 +243,7 @@ export default function Register() {
                           />
                         </svg>
                         <span className="text-sm font-semibold leading-6">GitHub</span>
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>
