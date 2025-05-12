@@ -2,14 +2,13 @@ import { Head, Link } from '@inertiajs/react'
 import DashboardLayout from '../../layouts/dashboard'
 
 interface DashboardProps {
-  stats: {
-    articles: number
-    discussions: number
-    questions: number
-  }
+  publishedArticles: number
+  draftArticles: number
+  discussions: number
+  questions: number
 }
 
-export default function Dashboard({ stats }: DashboardProps) {
+export default function Dashboard({ publishedArticles, draftArticles, discussions, questions }: DashboardProps) {
   return (
     <DashboardLayout>
       <Head title="Dashboard - JavaScript Cameroun" />
@@ -18,21 +17,27 @@ export default function Dashboard({ stats }: DashboardProps) {
         {/* Stats */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-            <dt className="truncate text-sm font-medium text-gray-500">Total Articles</dt>
+            <dt className="truncate text-sm font-medium text-gray-500">Articles publiés</dt>
             <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
-              {stats.articles}
+              {publishedArticles}
+            </dd>
+          </div>
+          <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+            <dt className="truncate text-sm font-medium text-gray-500">Brouillons</dt>
+            <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
+              {draftArticles}
             </dd>
           </div>
           <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
             <dt className="truncate text-sm font-medium text-gray-500">Total Discussions</dt>
             <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
-              {stats.discussions}
+              {discussions}
             </dd>
           </div>
           <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
             <dt className="truncate text-sm font-medium text-gray-500">Total Questions</dt>
             <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
-              {stats.questions}
+              {questions}
             </dd>
           </div>
         </div>

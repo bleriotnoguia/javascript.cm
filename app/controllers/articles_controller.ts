@@ -2,6 +2,7 @@ import { HttpContext } from '@adonisjs/core/http'
 import { articleValidator } from '#validators/article_validator'
 import Article from '#models/article'
 import { DateTime } from 'luxon'
+import ArticleStatsService from '#services/article_stats_service'
 
 export default class ArticlesController {
   async index({ inertia, request }: HttpContext) {
@@ -44,5 +45,15 @@ export default class ArticlesController {
     const article = await Article.query().where('slug', params.slug).preload('author').firstOrFail()
 
     return inertia.render('articles/[slug]', { article })
+  }
+
+  async dashboard({ inertia }: HttpContext) {
+    const stats = await ArticleStatsService.getStats()
+    return inertia.render('dashboard/index', {
+      publishedArticles: stats.published,
+      draftArticles: stats.drafts,
+      discussions: 0,
+      questions: 0,
+    })
   }
 }
