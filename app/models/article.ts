@@ -3,6 +3,7 @@ import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import string from '@adonisjs/core/helpers/string'
 import User from '#models/user'
+import { ArticleStatus } from '#enums/article_status'
 
 export default class Article extends BaseModel {
   @column({ isPrimary: true })
@@ -21,7 +22,7 @@ export default class Article extends BaseModel {
   declare excerpt: string
 
   @column()
-  declare isPublished: boolean
+  declare status: ArticleStatus
 
   @column()
   declare authorId: number
@@ -37,6 +38,15 @@ export default class Article extends BaseModel {
 
   @column.dateTime()
   declare publishedAt: DateTime | null
+
+  @column()
+  declare coverImage: string | null
+
+  @column()
+  declare canonicalUrl: string | null
+
+  @column()
+  declare tags: string[] | null
 
   // Generate slug before saving
   public async generateSlug() {

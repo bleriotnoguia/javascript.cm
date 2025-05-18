@@ -4,4 +4,4 @@ export enum Role {
   MEMBER = 'MEMBER',
 }
 
-export const roles = Object.values(Role)
+export const ROLES_LIST: Role[] = Object.values(Role)

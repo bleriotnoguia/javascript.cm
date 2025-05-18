@@ -30,7 +30,8 @@
     "#tests/*": "./tests/*.js",
     "#start/*": "./start/*.js",
     "#config/*": "./config/*.js",
-    "#enums/*": "./enums/*.js"
+    "#enums/*": "./enums/*.js",
+    "#mock-data/*": "./mock-data/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",
@@ -71,14 +72,17 @@
     "@tailwindcss/typography": "^0.5.16",
     "@uiw/react-md-editor": "^4.0.5",
     "@vinejs/vine": "^3.0.0",
+    "axios": "^1.9.0",
     "edge.js": "^6.2.0",
     "luxon": "^3.5.0",
+    "minio": "^8.0.5",
     "mysql2": "^3.12.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.0.0",
     "reflect-metadata": "^0.2.2",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "uuid": "^11.1.0"
   },
   "hotHook": {
     "boundaries": [

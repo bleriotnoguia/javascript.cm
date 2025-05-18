@@ -1,7 +1,8 @@
-import { Link, useForm } from '@inertiajs/react'
+import { useForm } from '@inertiajs/react'
 import { FormEvent } from 'react'
-import Navbar from '../../components/navbar'
+import { Role, ROLES_LIST } from '../../../enums/role'
 import Footer from '../../components/footer'
+import Navbar from '../../components/navbar'
 
 export default function Register() {
   const { data, setData, post, processing, errors } = useForm({
@@ -9,6 +10,7 @@ export default function Register() {
     name: '',
     email: '',
     password: '',
+    role: Role.MEMBER,
   })
 
   function handleSubmit(e: FormEvent) {
@@ -207,6 +209,25 @@ export default function Register() {
                       {errors.password && (
                         <p className="mt-1 text-sm text-red-600">{errors.password}</p>
                       )}
+                    </div>
+
+                    <div>
+                      <label htmlFor="role" className="block text-sm font-medium text-gray-700">
+                        Rôle
+                      </label>
+                      <select
+                        id="role"
+                        value={data.role}
+                        onChange={(e) => setData('role', e.target.value as Role)}
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                      >
+                        {ROLES_LIST.map((role) => (
+                          <option key={role} value={role}>
+                            {role.charAt(0) + role.slice(1).toLowerCase()}
+                          </option>
+                        ))}
+                      </select>
+                      {errors.role && <p className="mt-1 text-sm text-red-600">{errors.role}</p>}
                     </div>
 
                     <div>

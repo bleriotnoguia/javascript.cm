@@ -1,5 +1,5 @@
+import { Role, ROLES_LIST } from '#enums/role'
 import { BaseSchema } from '@adonisjs/lucid/schema'
-import { Role, roles } from '#enums/role'
 
 export default class extends BaseSchema {
   protected tableName = 'users'
@@ -14,7 +14,7 @@ export default class extends BaseSchema {
       table.string('avatar').nullable()
       table.string('github_id').unique().nullable()
       table.string('twitter_id').unique().nullable()
-      table.enu('role', roles).notNullable().defaultTo(Role.MEMBER)
+      table.enu('role', ROLES_LIST).notNullable().defaultTo(Role.MEMBER)
       table.timestamp('email_verified_at').nullable()
       table.timestamps(true, true)
     })

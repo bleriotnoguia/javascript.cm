@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
+const UploadController = () => import('#controllers/api/upload_controller')
 const LoginController = () => import('#controllers/auth/login_controller')
 const GithubController = () => import('#controllers/auth/github_controller')
 const RegisterController = () => import('#controllers/auth/register_controller')
@@ -53,8 +54,11 @@ router.get('/:username', [ProfileController, 'show']).where('username', '@.*').a
 // Dashboard routes
 router
   .group(() => {
-    router
-      .get('dashboard', [ArticlesController, 'dashboard'])
-      .as('dashboard')
+    router.get('dashboard', [ArticlesController, 'dashboard']).as('dashboard')
   })
   .middleware(middleware.auth())
+
+router.post('api/upload/presign', [UploadController, 'presign']).as('api.upload.presign')
+router
+  .get('api/upload/presign-view', [UploadController, 'presignView'])
+  .as('api.upload.presignView')

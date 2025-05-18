@@ -3,13 +3,14 @@ import { articleValidator } from '#validators/article_validator'
 import Article from '#models/article'
 import { DateTime } from 'luxon'
 import ArticleStatsService from '#services/article_stats_service'
+import { ArticleStatus } from '#enums/article_status'
 
 export default class ArticlesController {
   async index({ inertia, request }: HttpContext) {
     const page = request.input('page', 1)
     const articles = await Article.query()
       .preload('author')
-      .where('is_published', true)
+      .where('status', ArticleStatus.PUBLISHED)
       .orderBy('published_at', 'desc')
       .paginate(page, 10)
 
@@ -29,11 +30,14 @@ export default class ArticlesController {
     article.title = data.title
     article.content = data.content
     article.excerpt = data.excerpt
-    article.isPublished = data.isPublished || false
+    article.status = data.status as ArticleStatus
     article.authorId = auth.user!.id
-    if (data.isPublished) {
+    if (data.status === ArticleStatus.PUBLISHED) {
       article.publishedAt = DateTime.now()
     }
+    article.coverImage = data.coverImage || null
+    article.canonicalUrl = data.canonicalUrl || null
+    article.tags = data.tags || []
 
     await article.generateSlug()
     await article.save()
@@ -52,6 +56,7 @@ export default class ArticlesController {
     return inertia.render('dashboard/index', {
       publishedArticles: stats.published,
       draftArticles: stats.drafts,
+      waitingArticles: stats.waiting,
       discussions: 0,
       questions: 0,
     })
