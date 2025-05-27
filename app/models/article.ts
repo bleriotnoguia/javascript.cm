@@ -1,9 +1,9 @@
-import { DateTime } from 'luxon'
+import { ArticleStatus } from '#enums/article_status'
+import User from '#models/user'
+import string from '@adonisjs/core/helpers/string'
 import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
-import string from '@adonisjs/core/helpers/string'
-import User from '#models/user'
-import { ArticleStatus } from '#enums/article_status'
+import { DateTime } from 'luxon'
 
 export default class Article extends BaseModel {
   @column({ isPrimary: true })
@@ -45,11 +45,14 @@ export default class Article extends BaseModel {
   @column()
   declare canonicalUrl: string | null
 
-  @column()
-  declare tags: string[] | null
+  @column({
+    prepare: (value: string[] | string | null) => (Array.isArray(value) ? value.join(',') : value),
+    consume: (value: string | null) => (value ? value.split(',') : []),
+  })
+  declare tags: string[]
 
   // Generate slug before saving
-  public async generateSlug() {
-    this.slug = string.slug(this.title)
+  public static generateSlug(title: string) {
+    return string.slug(title)
   }
 }

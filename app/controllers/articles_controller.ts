@@ -1,9 +1,9 @@
-import { HttpContext } from '@adonisjs/core/http'
-import { articleValidator } from '#validators/article_validator'
-import Article from '#models/article'
-import { DateTime } from 'luxon'
-import ArticleStatsService from '#services/article_stats_service'
 import { ArticleStatus } from '#enums/article_status'
+import Article from '#models/article'
+import ArticleStatsService from '#services/article_stats_service'
+import { articleValidator } from '#validators/article_validator'
+import { HttpContext } from '@adonisjs/core/http'
+import { DateTime } from 'luxon'
 
 export default class ArticlesController {
   async index({ inertia, request }: HttpContext) {
@@ -25,22 +25,20 @@ export default class ArticlesController {
 
   async store({ request, auth, response }: HttpContext) {
     const data = await articleValidator.validate(request.all())
-    const article = new Article()
 
-    article.title = data.title
-    article.content = data.content
-    article.excerpt = data.excerpt
-    article.status = data.status as ArticleStatus
-    article.authorId = auth.user!.id
+    const payload: Partial<Article> = { ...data, authorId: auth.user!.id }
+
     if (data.status === ArticleStatus.PUBLISHED) {
-      article.publishedAt = DateTime.now()
+      payload.publishedAt = DateTime.now()
     }
-    article.coverImage = data.coverImage || null
-    article.canonicalUrl = data.canonicalUrl || null
-    article.tags = data.tags || []
 
-    await article.generateSlug()
-    await article.save()
+    payload.slug = Article.generateSlug(data.title)
+
+    console.log('payload', payload)
+
+    const article = await Article.create(payload)
+
+    console.log('article', article)
 
     return response.redirect().toRoute('articles.show', { slug: article.slug })
   }

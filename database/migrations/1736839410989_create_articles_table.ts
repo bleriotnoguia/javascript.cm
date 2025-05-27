@@ -1,5 +1,5 @@
-import { BaseSchema } from '@adonisjs/lucid/schema'
 import { ARTICLE_STATUS_LIST, ArticleStatus } from '#enums/article_status'
+import { BaseSchema } from '@adonisjs/lucid/schema'
 export default class extends BaseSchema {
   protected tableName = 'articles'
 
@@ -16,7 +16,7 @@ export default class extends BaseSchema {
       table.timestamp('published_at').nullable()
       table.string('cover_image').nullable()
       table.string('canonical_url').nullable()
-      table.json('tags').nullable()
+      table.string('tags', 255).nullable()
       table.timestamps(true, true)
     })
   }
